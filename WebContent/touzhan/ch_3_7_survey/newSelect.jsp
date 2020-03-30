@@ -49,7 +49,7 @@
 						<%
 					}
 				%>
-				<input type="submit" value="提交">
+				<input type="submit" name="submit" value="提交">
 			</form>
 			<a href="index.jsp">输入用户信息</a>
 			<a href="newSelectShow.jsp">查看调查结果</a>

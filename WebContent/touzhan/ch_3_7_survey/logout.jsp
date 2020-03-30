@@ -8,6 +8,7 @@
 	</head>
 	<body>
 		<%
+			session.removeAttribute("usernamesex");
 			session.invalidate();
 		%>
 		<h1>您已成功退出个人登录</h1>

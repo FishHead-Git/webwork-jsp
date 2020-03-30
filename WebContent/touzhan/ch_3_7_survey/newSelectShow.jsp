@@ -31,12 +31,12 @@
 			for(String s: list){
 				out.print(s+"<br>");
 			}
-		
-			if(session.getAttribute("count") == null){
-				session.setAttribute("count", 1);
-			}else{
-				session.setAttribute("count", (Integer)(session.getAttribute("count"))+1);
-			}
+			if(request.getParameter("submit") != null)
+				if(session.getAttribute("count") == null){
+					session.setAttribute("count", 1);
+				}else{
+					session.setAttribute("count", (Integer)(session.getAttribute("count"))+1);
+				}
 			out.print("您这是第["+session.getAttribute("count")+"]轮选择。");
 		%>
 		
