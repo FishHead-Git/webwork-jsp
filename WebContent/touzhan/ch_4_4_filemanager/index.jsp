@@ -24,20 +24,49 @@
 		<form action="manage.jsp" method="post">
 			<div>
 				<h3>文件/目录操作：</h3>
-				<label><input type="radio" value="创建目录" 	name="action">创建目录</label>&emsp;&emsp;
+				<label>
+					<input type="radio" value="创建目录"  
+					name="action" onclick="hideOld();showNew();save(this.value);"
+					>
+					创建目录
+				</label>
+				&emsp;&emsp;
 				<br>
-				<label><input type="radio" value="创建文件" 	name="action">创建文件</label>&emsp;
+				<label>
+					<input type="radio" value="创建文件" 
+					name="action" onclick="hideOld();showNew();save(this.value);">
+					创建文件
+				</label>&emsp;
 				<br>
-				<label><input type="radio" value="重命名" 	name="action">重命名目录或文件名</label>&emsp;					
+				<label>
+					<input type="radio" value="重命名"  
+					name="action" onclick="showOld();showNew();save(this.value);">
+					重命名目录或文件名
+				</label>&emsp;					
 				<br>
-				<label><input type="radio" value="删除空目录" name="action">删除空目录</label>&emsp;
+				<label>
+					<input type="radio" value="删除空目录" 
+					name="action" onclick="showOld();hideNew();save(this.value);">
+					删除空目录
+				</label>&emsp;
 				<br>
-				<label><input type="radio" value="删除文件" 	name="action">删除文件</label>&emsp;
+				<label>
+					<input type="radio" value="删除文件"  
+					name="action" onclick="showOld();hideNew();save(this.value);">
+					删除文件
+				</label>&emsp;
 				<br>
-				<label><input type="radio" value="删除任意" 	name="action">删除任意目录或文件（包括非空目录）</label>&emsp;
+				<label>
+					<input type="radio" value="删除任意"  
+					name="action" onclick="showOld();hideNew();save(this.value);">
+					删除任意目录或文件（包括非空目录）
+				</label>&emsp;
 				<br>	
-				<label><input type="radio" value="删除任意（用JavaBean）" name="action"
-					>删除任意目录或文件（包括非空目录）调用JavaBean</label>&emsp;
+				<label>
+					<input type="radio" value="删除任意（用JavaBean）" 
+					name="action" onclick="showOld();hideNew();save(this.value);">
+					删除任意目录或文件（包括非空目录）调用JavaBean
+				</label>&emsp;
 				<br><br>
 				父路径：
 				<input type="text" name="realPath" value="d:\">
@@ -57,4 +86,43 @@
 		</form>
 	</div>
   </body>
+  <script type="text/javascript">
+  	function hideOld(){
+  		document.getElementById('divOld').style.display = "none"
+  	}
+  	
+  	function showOld(){
+  		document.getElementById('divOld').style.display = ""
+  	}
+  	
+  	function hideNew(){
+  		document.getElementById('divNew').style.display = "none"
+  	}
+  	
+  	function showNew(){
+  		document.getElementById('divNew').style.display = ""
+  	}
+  	
+  	function save(value){
+  		sessionStorage.actionValue = value;
+  	}
+  	
+  	window.onload = function () {
+  		hideNew()
+  		hideOld()
+  		var value = sessionStorage.actionValue
+  		if(value == null){
+  			return
+  		}
+  		if(value != "创建目录" && value != "创建文件"){
+  			showOld()
+  		}else if(value == "创建目录" || value == "创建文件" || value == "重命名"){
+  			showNew()
+  		}
+  		
+  	}
+  	
+  </script>
+  
+  
 </html>
